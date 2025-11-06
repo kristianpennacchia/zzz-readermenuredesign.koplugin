@@ -12,16 +12,11 @@ Includes an option to show 'unknown' buttons (buttons not changed by this plugin
 </p>
 
 
-This plugin also modifies the UI for the [WordReference plugin](https://github.com/kristianpennacchia/wordreference.koplugin) definition popup:
+This plugin also provides custom UI for other plugins, such as [WordReference plugin](https://github.com/kristianpennacchia/wordreference.koplugin) and [AI Assistant plugin](https://github.com/omer-faruq/assistant.koplugin).
 
 <p align="left">
-  <img src="https://github.com/user-attachments/assets/f3daf3fe-acd9-4e33-8878-87a00b7e64df" width=45%>
-</p>
-
-This plugin also adds a button for opening the AI Assistant menu added by the [AI Assistant plugin](https://github.com/omer-faruq/assistant.koplugin):
-
-<p align="left">
-	<img width="45%" alt="screenshot_ai_assistant_button" src="https://github.com/user-attachments/assets/6c5650b4-6718-4b9b-8a0e-2cd8a6ed4f47" />
+  <img src="https://github.com/user-attachments/assets/2a99493d-d86d-44f0-813f-4ee4ef1cd606" width=30%>
+  <img src="https://github.com/user-attachments/assets/6c5650b4-6718-4b9b-8a0e-2cd8a6ed4f47" width=30%>
 </p>
 
 ## Install
