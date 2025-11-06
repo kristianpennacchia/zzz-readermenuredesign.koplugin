@@ -15,14 +15,14 @@ function ReaderHighlight:onShowHighlightMenu(index)
 	local wikipediaButton = nil
 	local wordReferenceButton = nil
 	local dictionaryButton = nil
-    local assistantButton = nil
+	local assistantButton = nil
 	local translateButton = nil
 	local unknownButtons = {}
 
 	for key, fn_button in ffiUtil.orderedPairs(self._highlight_buttons) do
 		local button = fn_button(self, index)
 		if not button.show_in_highlight_dialog_func or button.show_in_highlight_dialog_func() then
-            -- Remove leading index if present.
+			-- Remove leading index if present.
 			local key_without_index = string.match(key, "^%d+_(.*)$") or key
 
 			if key_without_index == "select" then
@@ -60,11 +60,11 @@ function ReaderHighlight:onShowHighlightMenu(index)
 				button.text_func = nil
 				button.icon = "button.search"
 				searchButton = button
-            elseif key_without_index == "ai_assistant" then
-                button.text = nil
-                button.text_func = nil
-                button.icon = "button.assistant"
-                assistantButton = button
+			elseif key_without_index == "ai_assistant" then
+				button.text = nil
+				button.text_func = nil
+				button.icon = "button.assistant"
+				assistantButton = button
 			else
 				table.insert(unknownButtons, button)
 			end
@@ -81,7 +81,7 @@ function ReaderHighlight:onShowHighlightMenu(index)
 		wordReferenceButton,
 		dictionaryButton,
 		translateButton,
-        assistantButton,
+		assistantButton,
 		searchButton,
 	}
 
