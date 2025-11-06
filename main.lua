@@ -216,6 +216,18 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 			elseif button.id == "highlight" then
 				button.text = nil
 				button.icon = "button.highlight"
+				button.callback = function()
+					-- https://github.com/koreader/koreader/blob/54281ae27946f0c9721689ed2d67e8dfab4df735/frontend/ui/widget/dictquicklookup.lua#L472
+					dict_popup.save_highlight = not dict_popup.save_highlight
+
+					local this_button = dict_popup.button_table:getButtonById("highlight")
+					this_button:setIcon(dict_popup.save_highlight and "button.unhighlight" or "button.highlight", this_button.width)
+					this_button:refresh()
+
+					UIManager:setDirty("all", function()
+						return "ui", dict_popup.dimen
+					end)
+				end
 				highlightButton = button
 			elseif button.id == "search" then
 				button.text = nil
@@ -256,7 +268,7 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 		icon = "button.dictionary",
 		enabled = dict_popup.is_wiki,
 		callback = function()
-			self.ui.dictionary:onLookupWord(dict_popup.word, false, dict_popup.word_boxes)
+			self.ui.dictionary:onLookupWord(dict_popup.word, false, dict_popup.word_boxes, self.ui.highlight)
 		end
 	}
 
