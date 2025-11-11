@@ -1,4 +1,5 @@
 # zzz-readermenuredesign.koplugin
+
 A redesign of the various reader menus in KOReader, including the Dictionary Quick Lookup popup and Reader Highlight menu.
 
 <p align="left">
@@ -6,11 +7,11 @@ A redesign of the various reader menus in KOReader, including the Dictionary Qui
 </p>
 
 Includes an option to show 'unknown' buttons (buttons not changed by this plugin) in the Reader Highlight menu:
+
 <p align="left">
   <img src="https://github.com/user-attachments/assets/162b8b8c-c6b5-4149-a8d9-b5e9bbeb64dd" width=45%>
   <img src="https://github.com/user-attachments/assets/9dbfec8c-88e0-4b91-9f13-7eb50f1f881c" width=45%>
 </p>
-
 
 This plugin also provides custom UI for other plugins, such as [WordReference plugin](https://github.com/kristianpennacchia/wordreference.koplugin) and [AI Assistant plugin](https://github.com/omer-faruq/assistant.koplugin).
 
@@ -29,14 +30,18 @@ This plugin also provides custom UI for other plugins, such as [WordReference pl
 
 #### Troubleshooting
 
-- If the icons don't appear and you instead see 'hazard' symbols, try putting the icons directly into `/koreader/resources/icons` instead of `mdlight`.
+- **All of the icons are hazard (⚠️) symbols.**
+    - Try putting the icons directly into `/koreader/resources/icons` instead of `mdlight`.
+
+- **Icons are not showing**
+    - This can happen if you upgraded from an older version of this plugin. Try deleting this plugins SVG icons from `/koreader/resources/icons/mdlight` and replace them with the PNG icons from the [latest release](https://github.com/kristianpennacchia/zzz-readermenuredesign.koplugin/releases/latest).
 
 ## Settings
 
 - Reader Highlight menu:
-  - Open Menu → Tools 🛠️ → More tools → Reader Menu Redesign → Show Unknown Buttons In Reader Highlight Menu.
-  - This will toggle showing/hiding the 'unknown' buttons (buttons without special handling in this plugin) in the Reader Highlight menu.
+    - Open Menu → Tools 🛠️ → More tools → Reader Menu Redesign → Show Unknown Buttons In Reader Highlight Menu.
+    - This will toggle showing/hiding the 'unknown' buttons (buttons without special handling in this plugin) in the Reader Highlight menu.
 - Dict Quick Lookup:
-  - Open Menu → Tools 🛠️ → More tools → Reader Menu Redesign → Show Nav Buttons In Dict Quick Lookup.
-  - This will toggle showing/hiding the 'nav' buttons in the Dict Quick Lookup to navigate between dictionaries, wikipedia entires, etc.
-  - Alternatively: You can simply swipe left-to-right to navigate instead, but these buttons are more useful for PC/Mac.
+    - Open Menu → Tools 🛠️ → More tools → Reader Menu Redesign → Show Nav Buttons In Dict Quick Lookup.
+    - This will toggle showing/hiding the 'nav' buttons in the Dict Quick Lookup to navigate between dictionaries, wikipedia entires, etc.
+    - Alternatively: You can simply swipe left-to-right to navigate instead, but these buttons are more useful for PC/Mac.
