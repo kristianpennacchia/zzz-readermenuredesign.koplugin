@@ -34,7 +34,7 @@ This plugin also provides custom UI for other plugins, such as [WordReference pl
     - Try putting the icons directly into `/koreader/resources/icons` instead of `mdlight`.
 
 - **Icons are not showing**
-    - This can happen if you upgraded from an older version of this plugin. Try deleting this plugins SVG icons from `/koreader/resources/icons/mdlight` and replace them with the PNG icons from the [latest release](https://github.com/kristianpennacchia/zzz-readermenuredesign.koplugin/releases/latest).
+    - This can happen if you upgraded from an older version of this plugin. Try deleting this plugins SVG icons from `/koreader/resources/icons/mdlight` and replace them with the PNG icons from the [latest release](https://github.com/kristianpennacchia/zzz-readermenuredesign.koplugin/releases/latest), then **restart KOReader**.
 
 ## Settings
 
