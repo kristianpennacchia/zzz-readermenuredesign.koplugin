@@ -25,15 +25,14 @@ This plugin also provides custom UI for other plugins, such as [WordReference pl
 - Download the [latest release](https://github.com/kristianpennacchia/zzz-readermenuredesign.koplugin/releases/latest).
 - Unzip `zzz-readermenuredesign.koplugin.zip`.
 - Copy the `zzz-readermenuredesign.koplugin` folder to your KOReader `plugins` directory on the device.
-- Copy the icons into the equivalent folder in KOReader. E.g. `/koreader/resources/icons/mdlight`
 - Restart KOReader.
 
 #### Troubleshooting
 
 - **All of the icons are hazard (⚠️) symbols.**
-    - Try putting the icons directly into `/koreader/resources/icons` instead of `mdlight`.
+    - As of version v1.0.5, the icons should be installed automatically, however if you are still encountering this issue, try manually copying the icons from the `zzz-readermenuredesign.koplugin` folder and putting them into the KOReader icons folder `/koreader/resources/icons`.
 
-- **Icons are not showing**.
+- **Icons are not showing at all**.
     - This can happen on some devices with older versions of this plugin. Try deleting this plugins SVG icons from `/koreader/resources/icons/mdlight` and replace them with the PNG icons from the [latest release](https://github.com/kristianpennacchia/zzz-readermenuredesign.koplugin/releases/latest), then **restart KOReader**.
 
 ## Settings
