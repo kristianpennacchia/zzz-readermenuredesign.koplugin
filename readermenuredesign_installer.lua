@@ -1,3 +1,6 @@
+-- Loosely based on code from @joshuacant
+-- https://github.com/joshuacant/ProjectTitle/blob/master/ptutil.lua
+
 local DataStorage = require("datastorage")
 local ffiUtil = require("ffi/util")
 local util = require("util")
