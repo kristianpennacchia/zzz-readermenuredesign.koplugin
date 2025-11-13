@@ -5,7 +5,11 @@ local ReaderHighlight = require("apps/reader/modules/readerhighlight")
 local ButtonDialog = require("ui/widget/buttondialog")
 local UIManager = require("ui/uimanager")
 local ffiUtil = require("ffi/util")
+local logger = require("logger")
+local Installer = require("readermenuredesign_installer")
 local _ = require("gettext")
+
+local logprefix = "[ReaderMenuRedesign] Installer:"
 
 -- Override creation of the UI for the reader highlight menu.
 function ReaderHighlight:onShowHighlightMenu(index)
@@ -122,6 +126,13 @@ function ReaderHighlight:onShowHighlightMenu(index)
 	-- NOTE: Disable merging for this update,
 	--       or the buggy Sage kernel may alpha-blend it into the page (with a bogus alpha value, to boot)...
 	UIManager:show(self.highlight_dialog, "[ui]")
+end
+
+-- Perform installation of resources.
+if Installer:installIcons() then
+	logger.warn(logprefix, "Completed installation of icons.")
+else
+	logger.warn(logprefix, "Failed to install icons.")
 end
 
 -- Create the instance for the ReaderMenuRedesign plugin.
