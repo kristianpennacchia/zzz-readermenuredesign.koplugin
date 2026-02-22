@@ -5,6 +5,7 @@ local DataStorage = require("datastorage")
 local ffiUtil = require("ffi/util")
 local util = require("util")
 local logger = require("logger")
+local Device = require("device")
 
 local Installer = {}
 
@@ -13,7 +14,7 @@ local koreader_dir = DataStorage:getDataDir()
 local plugins_dir = koreader_dir .. "/plugins"
 local plugin_path = plugins_dir .. "/" .. "zzz-readermenuredesign.koplugin"
 local plugin_icons_dir = plugin_path .. "/resources/icons/mdlight"
-local koreader_icons_dir = koreader_dir .. "/resources/icons/mdlight"
+local koreader_icons_dir = koreader_dir .. (Device:isAndroid() and "/icons" or "/resources/icons/mdlight")
 
 function Installer:installIcons()
 	local icon_list = {}
