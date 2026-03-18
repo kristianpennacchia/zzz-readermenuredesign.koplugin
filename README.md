@@ -1,3 +1,35 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=id">Bahasa Indonesia</a>
+        | <a href="https://openaitx.github.io/view.html?user=kristianpennacchia&project=zzz-readermenuredesign.koplugin&lang=as">অসমীয়া</
+      </div>
+    </div>
+  </details>
+</div>
+
 # zzz-readermenuredesign.koplugin
 
 A redesign of the various reader menus in KOReader, including the Dictionary Quick Lookup popup and Reader Highlight menu.
