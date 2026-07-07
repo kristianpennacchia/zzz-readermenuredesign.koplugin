@@ -21,6 +21,7 @@ function ReaderHighlight:onShowHighlightMenu(index)
 	local dictionaryButton = nil
 	local assistantButton = nil
 	local translateButton = nil
+	local xrayButton = nil
 	local unknownButtons = {}
 
 	for key, fn_button in ffiUtil.orderedPairs(self._highlight_buttons) do
@@ -69,6 +70,11 @@ function ReaderHighlight:onShowHighlightMenu(index)
 				button.text_func = nil
 				button.icon = "button.assistant"
 				assistantButton = button
+			elseif key_without_index == "xray_lookup" then
+				button.text = nil
+				button.text_func = nil
+				button.icon = "button.xray"
+				xrayButton = button
 			else
 				table.insert(unknownButtons, button)
 			end
@@ -86,6 +92,7 @@ function ReaderHighlight:onShowHighlightMenu(index)
 		dictionaryButton,
 		translateButton,
 		assistantButton,
+		xrayButton,
 		searchButton,
 	}
 
@@ -400,6 +407,9 @@ function ReaderMenuRedesign:onWordReferenceDefinitionButtonsReady(ui, buttons)
 			elseif button.id == "translate" then
 				button.text = nil
 				button.icon = "button.translate"
+			elseif button.id == "xray" then
+				button.text = nil
+				button.icon = "button.xray"
 			end
 		end
 	end
