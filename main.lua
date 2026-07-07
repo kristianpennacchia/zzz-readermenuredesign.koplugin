@@ -144,6 +144,7 @@ local ReaderMenuRedesign = WidgetContainer:extend {
 function ReaderMenuRedesign:init()
 	self:onDispatcherRegisterActions()
 	self.ui.menu:registerToMainMenu(self)
+	self:installDictQuickLookupPatch()
 end
 
 function ReaderMenuRedesign:onDispatcherRegisterActions()
@@ -195,9 +196,33 @@ function ReaderMenuRedesign:addToMainMenu(menu_items)
 	}
 end
 
-function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
+function ReaderMenuRedesign:installDictQuickLookupPatch()
+	if not (self.ui and self.ui.dictionary and self.ui.dictionary.addToDictButtons) then
+		return
+	end
+
+	local DictQuickLookup = require("ui/widget/dictquicklookup")
+	if DictQuickLookup._readermenuredesign_original_buildButtonLayout then
+		return
+	end
+
+	DictQuickLookup._readermenuredesign_original_buildButtonLayout = DictQuickLookup.buildButtonLayout
+	DictQuickLookup.buildButtonLayout = function(dict_popup, ...)
+		local buttons = DictQuickLookup._readermenuredesign_original_buildButtonLayout(dict_popup, ...)
+		local plugin = dict_popup.ui and dict_popup.ui["zzz-readermenuredesign"]
+		if plugin and plugin.customizeDictButtons then
+			local ok, err = pcall(plugin.customizeDictButtons, plugin, dict_popup, buttons)
+			if not ok then
+				logger.warn("[ReaderMenuRedesign]", "Failed to customize dictionary buttons:", err)
+			end
+		end
+		return buttons
+	end
+end
+
+function ReaderMenuRedesign:customizeDictButtons(dict_popup, buttons)
 	if dict_popup.is_wiki_fullpage then
-		return false
+		return
 	end
 
 	local vocabularyButton = nil
@@ -206,14 +231,13 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 	local highlightButton = nil
 	local searchButton = nil
 	local wikipediaButton = nil
-	local closeButton = nil
 	local wordReferenceButton = nil
+	local translateButton = nil
 	local unknownButtons = {}
 
 	for row = 1, #buttons do
 		for column = 1, #buttons[row] do
 			local button = buttons[row][column]
-
 			if button.id == "vocabulary" then
 				vocabularyButton = button
 			elseif button.id == "prev_dict" then
@@ -226,14 +250,19 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 				end
 			elseif button.id == "highlight" then
 				button.text = nil
+				button.text_func = nil
 				button.icon = "button.highlight"
 				button.callback = function()
-					-- https://github.com/koreader/koreader/blob/54281ae27946f0c9721689ed2d67e8dfab4df735/frontend/ui/widget/dictquicklookup.lua#L472
+					-- Match KOReader's built-in highlight toggle state.
 					dict_popup.save_highlight = not dict_popup.save_highlight
 
-					local this_button = dict_popup.button_table:getButtonById("highlight")
-					this_button:setIcon(dict_popup.save_highlight and "button.unhighlight" or "button.highlight", this_button.width)
-					this_button:refresh()
+					local this_button = dict_popup.button_table
+						and dict_popup.button_table:getButtonById("highlight")
+					if this_button then
+						local icon = dict_popup.save_highlight and "button.unhighlight" or "button.highlight"
+						this_button:setIcon(icon, this_button.width)
+						this_button:refresh()
+					end
 
 					UIManager:setDirty("all", function()
 						return "ui", dict_popup.dimen
@@ -242,9 +271,11 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 				highlightButton = button
 			elseif button.id == "search" then
 				button.text = nil
+				button.text_func = nil
 				button.icon = "button.search"
 				searchButton = button
 			elseif button.id == "wikipedia" then
+				button.text = nil
 				button.text_func = nil
 				if dict_popup.is_wiki then
 					button.icon = "button.article"
@@ -254,25 +285,33 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 				wikipediaButton = button
 			elseif button.id == "close" then
 				button.text = nil
+				button.text_func = nil
 				button.icon = "close"
-				closeButton = button
 			elseif button.id == "wordreference" then
 				button.text = nil
+				button.text_func = nil
 				button.icon = "button.wordreference"
 				wordReferenceButton = button
+			elseif button.id == "translate" then
+				button.text = nil
+				button.text_func = nil
+				button.icon = "button.translate"
+				translateButton = button
 			else
 				table.insert(unknownButtons, button)
 			end
 		end
 	end
 
-	local translateButton = {
-		id = "translate",
-		icon = "button.translate",
-		callback = function()
-			Translator:showTranslation(dict_popup.word, true)
-		end
-	}
+	if not translateButton then
+		translateButton = {
+			id = "translate",
+			icon = "button.translate",
+			callback = function()
+				Translator:showTranslation(dict_popup.word, true)
+			end
+		}
+	end
 
 	local dictionaryButton = {
 		id = "dictionary",
@@ -284,7 +323,7 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 	}
 
 	-- Remove all rows.
-	for row = 1, #buttons do
+	for row = #buttons, 1, -1 do
 		table.remove(buttons, row)
 	end
 
@@ -314,7 +353,6 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 
 	if #unknownButtons > 0 then
 		buttons[currentRow] = unknownButtons
-		currentRow = currentRow + 1
 	end
 
 	-- Remove all `nil` buttons.
@@ -332,6 +370,18 @@ function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
 			table.remove(buttons, row)
 		end
 	end
+end
+
+function ReaderMenuRedesign:onDictButtonsReady(dict_popup, buttons)
+	if dict_popup.is_wiki_fullpage then
+		return false
+	end
+
+	if self.ui and self.ui.dictionary and self.ui.dictionary.addToDictButtons then
+		return false
+	end
+
+	self:customizeDictButtons(dict_popup, buttons)
 
 	return false
 end
